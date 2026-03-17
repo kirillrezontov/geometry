@@ -52,8 +52,8 @@ public:
 		T** tmp = (T**)realloc(data, sizeof(T*) * size);
 		if (tmp) data = tmp;
 	}
-	int get_size() { return size; }
-	int get_capacity() { return capacity; }
+	int get_size() const { return size; }
+	int get_capacity() const { return capacity; }
 	T* get(int index) const {
 		T* i = (*this)[index];
 		if (!i) throw uninitialized_data_exception();
@@ -64,6 +64,7 @@ public:
 	}
 	T* front() { return (*this)[0]; }
 	T* back() { return (*this)[size - 1]; }
+	bool empty() { return size == 0; }
 };
 
 class vector : public Vector<shape> {

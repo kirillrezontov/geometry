@@ -9,7 +9,7 @@ vector::vector() {};
 vector::vector(int size) {
 	this->size = size; capacity = size<<1;
 	if(data) free(data);
-	data = (shape**)malloc(sizeof(shape*)*capacity);
+	data = (shape**)calloc(capacity, sizeof(shape*));
 	if (!data) throw memory_allocation_exception();
 }
 
@@ -37,9 +37,9 @@ void vector::output(std::ostream& stream) const {
 	stream << size << std::endl;
 	for (int i = 0; i < size; i++) {
 		try {
-			shape* a = (*this)[i];
+			shape* a = this->get(i);
 			if (!a) throw uninitialized_data_exception();
-			(*this)[i]->print(stream);
+			a->print(stream);
 		}
 		catch (uninitialized_data_exception& e) {
 			stream << "null shape" << std::endl;

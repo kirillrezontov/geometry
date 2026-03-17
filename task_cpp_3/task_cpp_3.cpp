@@ -7,6 +7,7 @@
 #include "string"
 #include "map"
 #include <sstream>
+#include "interface.h"
 #include <typeinfo>
 using namespace std;
 
@@ -156,7 +157,8 @@ int main()
 	/*vector v;
 	v.read_from_file("shapes.txt");
 	v.output(cout);*/
-	caller();
+	Interface i;
+	i.start();
 	return 0;
 }
 
