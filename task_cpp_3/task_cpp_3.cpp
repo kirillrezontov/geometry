@@ -162,7 +162,7 @@ int main()
 	return 0;
 }
 
-void caller() {
+/*void caller() {
 	string input, cmd, name, name2;
 	map<string, vector*> vectors;
 	map<string, shape*> shapes;
@@ -408,4 +408,4 @@ void caller() {
 			}
 		}
 	}
-}
+}*/

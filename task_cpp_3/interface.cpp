@@ -60,7 +60,7 @@ template <class T> void Interface::shape_command(const Vector<string>& cmd) {
 	string& next = *cmd[2];
 	try {
 		int num = stoi(next);
-		if (num <= 0) { 
+		if (num < 0) { 
 			string value_name = "value";
 			if (typeid(T) == typeid(circle)) value_name = "radius";
 			else if (typeid(T) == typeid(square)) value_name = "side";
@@ -109,7 +109,7 @@ void Interface::vector_call_command(const Vector<string>& cmd) {
 	try
 	{
 		n = get_index(*cmd[0]);
-		cmd[0] = new string(cmd[0]->substr(0, cmd[0]->find('[')));
+		cmd[0] = new string(cmd[0]->substr(0, cmd[0]->find('['))); 
 		vector* v = vectors.at(*cmd[0]);
 		if (cmd.get_size() == 1) {
 			try{
@@ -214,6 +214,16 @@ void Interface::vector_call_command(const Vector<string>& cmd) {
 			}
 		}
 		return;
+	}
+	else if (*cmd[1] == "size") {
+		cout << v->get_size() << endl; return;
+	}
+	else if (*cmd[1] == "capacity") {
+		cout << v->get_capacity() << endl; return;
+	}
+	else if (*cmd[1] == "delete") {
+		delete v;
+		vectors.erase(*cmd[0]);
 	}
 	else { cout << "Unknown syntax" << endl; return; }
 }
